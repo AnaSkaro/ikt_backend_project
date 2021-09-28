@@ -1,32 +1,31 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "REST-Server für recipies-Datenbank",
+  "description": "REST-Server für posts-Datenbank",
   "main": "server.js",
   "type": "module",
   "scripts": {
     "watch": "nodemon ./server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "AnaSkaro"
+    "test": "mocha ./tests.js"
   },
   "keywords": [
     "IKT",
-    "Semesteraufgabe",
+    "PWA",
     "REST-API",
-    "Backend",
-    "recipies"
+    "Backendend",
+    "posts"
   ],
-  "author": "Ana Skaro",
+  "author": "AnaSkaro",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mysql": "^2.18.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12"
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^8.4.0",
+    "nodemon": "^2.0.13"
   }
 }

@@ -1,21 +1,29 @@
-import express from "express";
+import express from 'express';
+import cors from 'cors';
+import { PostController } from './posts.controller.js';
 
-const app = express();
+export const app = express();
+const PORT = 3000;
 
-// parse requests of content-type: application/json
-app.use(express.json());
+app.use(cors());
+app.use(express.urlencoded({ limit: '20mb', extended: true }));
+app.use(express.json({ limit: '20mb' }));
 
-// parse requests of content-type: application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
+app.get('/', (request, response) => {
+    response.send('API LIVE');
+}); 
 
-// simple route
-app.get("/", (req, res) => {
-    res.json({ message: "Hello FIW!" });
-});
+// Routes
+app.post("/posts", PostController.create); 
+app.get("/posts", PostController.readAll); 
+app.get("/posts/:postId", PostController.readOne);
+app.put("/posts/:postId", PostController.update); 
+app.delete("/posts/:postId", PostController.delete);
 
-require("./config/app/routes/recipe.routes.js")(app);
-
-// set port, listen for requests
-app.listen(3000, () => {
-    console.log("Server is running on port 3000.");
+app.listen(PORT, (error) => {
+    if (error) {
+        console.log(error);
+    } else {
+        console.log(`Server started and listening on port ${PORT} ...`);
+    }
 });
